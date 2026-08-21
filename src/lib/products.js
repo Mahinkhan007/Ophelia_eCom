@@ -4,15 +4,15 @@
    ============================================================ */
 
 export const CATEGORY_INFO = {
-  "complexion":     { label: "Complexion",     desc: "Base makeup for a flawless, luminous canvas — foundation, powders and highlighters." },
-  "lip":            { label: "Lip",            desc: "Colour and care for the lips, from satin finishes to everyday wear." },
-  "eye":            { label: "Eye",            desc: "Definition and dimension for every eye look, from everyday to statement." },
-  "cheek":          { label: "Cheek",          desc: "Soft, buildable colour for a natural, healthy flush." },
-  "tools":          { label: "Tools",          desc: "Multi-use pieces designed to complete and simplify any makeup routine." },
-  "body-care":      { label: "Body care",      desc: "Nourishing everyday essentials for softer, healthier skin." },
-  "face-care":      { label: "Face care",      desc: "Gentle, botanical formulas that cleanse and care for the skin." },
-  "home-fragrance": { label: "Home fragrance", desc: "Reed diffusers crafted to set a calm, inviting atmosphere at home." },
-  "bath":           { label: "Bath",           desc: "Gentle cleansing essentials for a soft, everyday bath routine." },
+  "complexion":     { label: "Complexion",     desc: "Base makeup for a flawless, luminous canvas — foundation, powders and highlighters.", img: "/assets/cat-complexion.png" },
+  "lip":            { label: "Lip",            desc: "Colour and care for the lips, from satin finishes to everyday wear.", img: "/assets/cat-lip.png" },
+  "eye":            { label: "Eye",            desc: "Definition and dimension for every eye look, from everyday to statement.", img: "/assets/cat-eye.png" },
+  "cheek":          { label: "Cheek",          desc: "Soft, buildable colour for a natural, healthy flush.", img: "/assets/cat-cheek.png" },
+  "tools":          { label: "Tools",          desc: "Multi-use pieces designed to complete and simplify any makeup routine.", img: "/assets/cat-tools.png" },
+  "body-care":      { label: "Body care",      desc: "Nourishing everyday essentials for softer, healthier skin.", img: "/assets/cat-body-care.jpg" },
+  "face-care":      { label: "Face care",      desc: "Gentle, botanical formulas that cleanse and care for the skin.", img: "/assets/cat-face-care.jpg" },
+  "home-fragrance": { label: "Home fragrance", desc: "Reed diffusers crafted to set a calm, inviting atmosphere at home.", img: "/assets/cat-home-fragrance.jpg" },
+  "bath":           { label: "Bath",           desc: "Gentle cleansing essentials for a soft, everyday bath routine.", img: "/assets/cat-bath.jpg" },
 };
 
 /* Each product: id, name, sub, cat, price (pre-discount), variants, desc, features, sizeLabel */

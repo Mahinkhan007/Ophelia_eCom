@@ -3,7 +3,7 @@ import { CATEGORY_INFO } from '../lib/products';
 
 const HOME_CATS = ['lip', 'cheek', 'home-fragrance', 'complexion'];
 const CAT_TILES = HOME_CATS.map((cat) => ({
-  cat, title: CATEGORY_INFO[cat].label, sub: CATEGORY_INFO[cat].desc, img: '/assets/lipstick.jpg',
+  cat, title: CATEGORY_INFO[cat].label, sub: CATEGORY_INFO[cat].desc, img: CATEGORY_INFO[cat].img,
 }));
 
 export default function Home() {
