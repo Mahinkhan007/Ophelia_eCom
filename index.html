@@ -1,28 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<title>Home | Ophelia</title>
-<link rel="stylesheet" href="assets/site.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ophelia — The Jewel of Lily Glades</title>
+<link rel="icon" href="assets/favicon.png" type="image/png">
+<meta name="description" content="Precisely you. Hand-matched shades, refillable by design. Shop Ophelia's Spring/Summer 2026 collection.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<div class="promo">Free delivery on orders over $100. Aurelle and Oreiana only.</div>
-<div class="head"><div class="wrap head-inner">
-<div class="head-logo"><a href="index.html"><img src="logo.png"></a></div>
-<div class="head-search"><input type="text" id="q" placeholder="Search"> <button onclick="runSearch()">Search</button></div>
-<div class="head-links"><a href="account.html">Sign in</a><a href="cart.html" id="basketcount">Basket (0)</a></div>
-</div></div>
-<div class="nav"><div class="wrap"><a href="index.html" class="here">Home</a><a href="shop.html">Shop</a><a href="new-in.html">New In</a><a href="about.html">About</a><a href="delivery-and-returns.html">Delivery</a><a href="contact.html">Contact</a></div></div>
-<div class="wrap">
-<div class="hero"><h1>Colour that stays in stock.</h1><p>Prestige beauty house, privately held by family, an employee trust and minority institutional holders. A dominant colour-cosmetics segment alongside a smaller natural body-care line. Counters, boutiques, owned e-commerce, travel retail, wholesale and export. Loyalty-driven.</p><p><a class="btn" style="text-decoration:none" href="shop.html">Shop the range</a></p></div><div class="strip"><a href="category-colour.html">Colour</a><a href="category-refills.html">Refills</a><a href="category-body-care.html">Body care</a><a href="category-home.html">Home</a><a href="category-service.html">Service</a></div><h2>Featured</h2><div class="grid"><div class="card" data-price="32.0" data-name="Velvet Matte Lipstick" onclick="location.href='product-op-001.html'"><div class="ph">VML</div><div class="cat">Colour</div><div class="nm">Velvet Matte Lipstick</div><div class="pr">ORD 32</div><div class="bd">Hero line</div></div><div class="card" data-price="48.0" data-name="Second Skin Foundation" onclick="location.href='product-op-002.html'"><div class="ph">SSF</div><div class="cat">Colour</div><div class="nm">Second Skin Foundation</div><div class="pr">ORD 48</div></div><div class="card" data-price="29.0" data-name="Lash Architect Mascara" onclick="location.href='product-op-003.html'"><div class="ph">LAM</div><div class="cat">Colour</div><div class="nm">Lash Architect Mascara</div><div class="pr">ORD 29</div></div><div class="card" data-price="18.0" data-name="Lipstick Refill Cartridge" onclick="location.href='product-op-004.html'"><div class="ph">LRC</div><div class="cat">Refills</div><div class="nm">Lipstick Refill Cartridge</div><div class="pr">ORD 18</div><div class="bd">Refillable</div></div></div><div class="clear"></div><h2>Also from the house</h2><div class="grid"><div class="card" data-price="54.0" data-name="Terroir Body Oil" onclick="location.href='product-op-005.html'"><div class="ph">TBO</div><div class="cat">Body care</div><div class="nm">Terroir Body Oil</div><div class="pr">ORD 54</div></div><div class="card" data-price="62.0" data-name="Hearth and Fig Candle" onclick="location.href='product-op-006.html'"><div class="ph">HAF</div><div class="cat">Home</div><div class="nm">Hearth and Fig Candle</div><div class="pr">ORD 62</div></div><div class="card" data-price="0.0" data-name="Counter Colour Match" onclick="location.href='product-op-007.html'"><div class="ph">CCM</div><div class="cat">Service</div><div class="nm">Counter Colour Match</div><div class="pr">Free</div><div class="bd">Free</div></div></div><div class="clear"></div><div class="panel" style="margin-top:30px"><h4>Visit us</h4><p class="fine">Ophelia &middot; Aurelle, Oreiana &middot; established 1952</p></div></div>
-<div class="foot"><div class="wrap foot-inner">
-<div class="fcol"><h4>Shop</h4><a href="shop.html">All products</a><a href="new-in.html">New in</a><a href="#">Gift cards</a><a href="#">Sale</a></div>
-<div class="fcol"><h4>Help</h4><a href="delivery-and-returns.html">Delivery and returns</a><a href="contact.html">Contact us</a><a href="#">Track your order</a><a href="#">Size guide</a></div>
-<div class="fcol"><h4>About</h4><a href="about.html">Our story</a><a href="#">Careers</a><a href="#">Sustainability</a><a href="#">Press</a></div>
-<div class="fcol"><h4>Newsletter</h4><p class="fine">News from the house, once a month.</p><input type="text" placeholder="Email address"> <button class="btn btn-sm" onclick="subscribe()">Sign up</button></div>
-</div>
-<div class="wrap fine copy">&copy; 2026 Ophelia. A fictional company created for assessment purposes. Products, prices and stock are invented.<br><a href="#">Terms of sale</a> &middot; <a href="#">Privacy notice</a> &middot; <a href="#">Cookies</a></div></div>
-<script src="assets/products.js"></script>
-<script src="assets/site.js"></script>
+
+<div id="header-mount"></div>
+
+<main>
+  <!-- HERO -->
+  <section class="hero" style="padding:0;">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <p class="hero-eyebrow">Spring / Summer 2026</p>
+        <h1 class="hero-title">Precisely<br>You.</h1>
+        <p class="hero-sub">Every shade matched by hand, not guessed from a chart — then refilled, not replaced, season after season. Welcome to Ophelia, now online.</p>
+        <div class="hero-ctas">
+          <a href="category.html?cat=all" class="btn btn-primary">Shop Now</a>
+          <a href="category.html?cat=complexion" class="btn btn-outline">Explore Complexion</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img src="assets/lipstick.jpg" alt="Rouge Ophélia lipstick" class="hero-image">
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORY TILES -->
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Shop by Category</p>
+        <h2 class="section-title">Find what's already yours</h2>
+        <p class="section-sub">Colour, care and fragrance — each shade matched, never guessed.</p>
+      </div>
+      <div class="cat-tiles">
+        <a href="category.html?cat=complexion" class="cat-tile"><h3>Complexion</h3><p>Foundation, powder &amp; finish</p></a>
+        <a href="category.html?cat=lip" class="cat-tile"><h3>Lip</h3><p>Refillable colour, matched to you</p></a>
+        <a href="category.html?cat=eye" class="cat-tile"><h3>Eye</h3><p>Liner, mascara &amp; palettes</p></a>
+        <a href="category.html?cat=cheek" class="cat-tile"><h3>Cheek &amp; Contour</h3><p>Blush, highlight &amp; glow</p></a>
+        <a href="category.html?cat=body" class="cat-tile"><h3>Body Care</h3><p>Thalassa botanicals</p></a>
+        <a href="category.html?cat=bath" class="cat-tile"><h3>Bath &amp; Cleansing</h3><p>A cleanse that feels like care</p></a>
+        <a href="category.html?cat=fragrance" class="cat-tile"><h3>Home Fragrance</h3><p>Oreiana, brought home</p></a>
+        <a href="category.html?cat=all" class="cat-tile" style="background:var(--umber); border-color:var(--umber);"><h3 style="color:var(--cream)">Shop All</h3><p style="color:rgba(255,255,255,0.75)">The full collection</p></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED / BESTSELLERS -->
+  <section style="background:var(--cream-2);">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Best Sellers</p>
+        <h2 class="section-title">The shades our clients keep coming back for</h2>
+      </div>
+      <div class="grid" id="featuredGrid"></div>
+    </div>
+  </section>
+
+  <!-- NEW ARRIVALS -->
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">New Arrivals</p>
+        <h2 class="section-title">Just landed for Spring/Summer</h2>
+      </div>
+      <div class="grid" id="newGrid"></div>
+    </div>
+  </section>
+
+  <!-- PROMO BANNER -->
+  <section>
+    <div class="container">
+      <div class="promo-banner">
+        <div>
+          <h3>Hand-matched, refillable, made to last.</h3>
+          <p>Every shade fitted to you, in a case built to be renewed each season — not thrown away.</p>
+        </div>
+        <a href="category.html?cat=all" class="btn btn-gold">Shop the Collection</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="footer-mount"></div>
+
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+<script src="js/supabase-client.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/products.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/main.js"></script>
+<script type="module">
+  injectChrome('home');
+
+  // Featured (bestsellers) + New arrivals grids
+  function cardHtml(p) {
+    return `
+      <article class="card tilt">
+        ${p.badge ? `<span class="card-badge">${p.badge}</span>` : ""}
+        <a href="product.html?id=${p.id}">
+          <div class="card-media"><img src="assets/lipstick.jpg" alt="${p.name}" class="card-photo"></div>
+          <div class="card-body">
+            <p class="card-cat">${CATEGORY_INFO[p.cat].label}</p>
+            <h3 class="card-name">${p.name}</h3>
+            <p class="card-sub">${p.sub}</p>
+            <div class="price-row"><span class="price-new">ORD ${p.price}</span></div>
+          </div>
+        </a>
+        <div class="card-cta"><button class="btn btn-outline btn-full" onclick="addToCart('${p.id}','${p.variants[0]}',1); showToast('Added ${p.name} to cart');">Add to Cart</button></div>
+      </article>`;
+  }
+
+  document.getElementById('featuredGrid').innerHTML = PRODUCTS.filter(p => p.badge === "Bestseller" || p.badge === "Signature").slice(0,4).map(cardHtml).join("");
+  document.getElementById('newGrid').innerHTML = PRODUCTS.filter(p => p.badge === "New").slice(0,4).map(cardHtml).join("");
+
+  enableTilt(".tilt");
+</script>
 </body>
 </html>

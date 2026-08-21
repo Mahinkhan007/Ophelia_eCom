@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop — Ophelia</title>
+<link rel="icon" href="assets/favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="header-mount"></div>
+
+<main class="container">
+  <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><span id="crumbCat">Shop All</span></div>
+
+  <section style="padding-top:20px;">
+    <div class="section-head" style="text-align:left; margin:0 0 10px;">
+      <h1 class="serif" id="catTitle" style="font-size:34px;">Shop All</h1>
+      <p class="section-sub" id="catDesc" style="margin-top:6px;">The full Ophelia collection, Spring/Summer 2026.</p>
+    </div>
+
+    <div class="filter-bar">
+      <div class="chip-row" id="chipRow"></div>
+      <select class="sort-select" id="sortSelect">
+        <option value="featured">Sort: Featured</option>
+        <option value="price-asc">Price: Low to High</option>
+        <option value="price-desc">Price: High to Low</option>
+        <option value="name-asc">Name: A–Z</option>
+      </select>
+    </div>
+
+    <div class="grid" id="productGrid"></div>
+  </section>
+</main>
+
+<div id="footer-mount"></div>
+
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+<script src="js/supabase-client.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/products.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/main.js"></script>
+<script>
+  const params = new URLSearchParams(location.search);
+  let currentCat = params.get("cat") || "all";
+
+  function renderChips() {
+    const cats = [{key:"all", label:"All"}, ...Object.entries(CATEGORY_INFO).map(([k,v]) => ({key:k, label:v.label}))];
+    document.getElementById("chipRow").innerHTML = cats.map(c =>
+      `<button class="chip ${c.key === currentCat ? "active" : ""}" data-cat="${c.key}">${c.label}</button>`
+    ).join("");
+    document.querySelectorAll(".chip").forEach(btn => {
+      btn.addEventListener("click", () => {
+        currentCat = btn.dataset.cat;
+        const url = new URL(location);
+        url.searchParams.set("cat", currentCat);
+        history.pushState({}, "", url);
+        renderChips();
+        renderHeaderInfo();
+        renderGrid();
+      });
+    });
+  }
+
+  function renderHeaderInfo() {
+    const info = CATEGORY_INFO[currentCat];
+    document.getElementById("catTitle").textContent = info ? info.label : "Shop All";
+    document.getElementById("catDesc").textContent = info ? info.desc : "The full Ophelia collection, Spring/Summer 2026.";
+    document.getElementById("crumbCat").textContent = info ? info.label : "Shop All";
+  }
+
+  function cardHtml(p) {
+    return `
+      <article class="card tilt">
+        ${p.badge ? `<span class="card-badge">${p.badge}</span>` : ""}
+        <a href="product.html?id=${p.id}">
+          <div class="card-media"><img src="assets/lipstick.jpg" alt="${p.name}" class="card-photo"></div>
+          <div class="card-body">
+            <p class="card-cat">${CATEGORY_INFO[p.cat].label}</p>
+            <h3 class="card-name">${p.name}</h3>
+            <p class="card-sub">${p.sub} &middot; ${p.variants.length} ${p.variantLabel.toLowerCase()}${p.variants.length>1?"s":""}</p>
+            <div class="price-row"><span class="price-new">ORD ${p.price}</span></div>
+          </div>
+        </a>
+        <div class="card-cta"><button class="btn btn-outline btn-full" onclick="addToCart('${p.id}','${p.variants[0]}',1); showToast('Added ${p.name} to cart');">Add to Cart</button></div>
+      </article>`;
+  }
+
+  function renderGrid() {
+    let list = getProductsByCategory(currentCat).slice();
+    const sort = document.getElementById("sortSelect").value;
+    if (sort === "price-asc") list.sort((a,b) => a.price - b.price);
+    if (sort === "price-desc") list.sort((a,b) => b.price - a.price);
+    if (sort === "name-asc") list.sort((a,b) => a.name.localeCompare(b.name));
+    document.getElementById("productGrid").innerHTML = list.map(cardHtml).join("");
+    enableTilt(".tilt");
+  }
+
+  document.getElementById("sortSelect").addEventListener("change", renderGrid);
+
+  injectChrome("shop");
+  renderChips();
+  renderHeaderInfo();
+  renderGrid();
+</script>
+</body>
+</html>
