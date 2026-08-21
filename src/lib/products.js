@@ -132,14 +132,6 @@ export const PRODUCTS = [
     variantLabel: "Edition", size: "13.5g",
   },
   {
-    id: "cloud-heart", name: "Cloud Heart", sub: "Oil-Control Loose Powder", cat: "complexion",
-    price: 690, swatch: "#F0E6D2", badge: null,
-    desc: "A quiet finish that holds all day — a loose setting powder that controls shine without flattening skin.",
-    features: ["All-day oil control", "Featherlight, non-cakey finish", "2 shades"],
-    variants: ["Translucent", "Banana"],
-    variantLabel: "Shade", size: "7g",
-  },
-  {
     id: "flower-foam", name: "Flower Foam", sub: "Gentle Foaming Handwash", cat: "bath",
     price: 400, swatch: "#F2C6CE", badge: null,
     desc: "Strawberry — soft on hands, gentle on skin, for every day.",
