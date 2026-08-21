@@ -33,11 +33,17 @@ export const PRODUCTS = [
   },
   {
     id: "coast-baby", name: "Coast Baby", sub: "Silk Highlighting Powder", cat: "cheek",
-    price: 700, swatch: "#D8B98A", badge: "New",
+    price: 450, swatch: "#D8B98A", badge: "New",
     desc: "A soft, undertone-matched glow — silk-milled powder that melts into skin instead of sitting on top of it.",
     features: ["Silk-milled micro-shimmer", "Undertone-matched glow", "Buildable, weightless finish", "4 shades"],
     variants: ["Sunlit Peach", "Rose Quartz", "Champagne Gold", "Moonlit Pearl"],
     variantLabel: "Shade", size: "9g",
+    images: {
+      "Sunlit Peach": "/assets/products/coast-baby-sunlit-peach.jpg",
+      "Rose Quartz": "/assets/products/coast-baby-rose-quartz.png",
+      "Champagne Gold": "/assets/products/coast-baby-champagne-gold.jpg",
+      "Moonlit Pearl": "/assets/products/coast-baby-moonlit-pearl.jpg",
+    },
   },
   {
     id: "second-skin", name: "Second Skin", sub: "Serum Foundation", cat: "complexion",
@@ -56,7 +62,7 @@ export const PRODUCTS = [
     },
   },
   {
-    id: "cloud-blur", name: "Cloud Blur", sub: "Perfecting Pressed Powder", cat: "cheek",
+    id: "cloud-blur", name: "Cloud Blur", sub: "Perfecting Pressed Powder", cat: "complexion",
     price: 600, swatch: "#E8DAC0", badge: null,
     desc: "Blurs without masking — a finishing powder matched to your foundation shade so it disappears into skin.",
     features: ["Soft-focus micro-milled finish", "Oil-control without dulling", "Matched to Second Skin shades"],
@@ -88,6 +94,18 @@ export const PRODUCTS = [
       "Red": "/assets/products/fine-line-red.jpg",
       "Purple": "/assets/products/fine-line-purple.jpg",
       "Blue": "/assets/products/fine-line-blue.jpg",
+    },
+  },
+  {
+    id: "crossheart-palette", name: "Crossheart Palette", sub: "Nine-Pan Eyeshadow Palette", cat: "eye",
+    price: 750, swatch: "#8A6A4E", badge: null,
+    desc: "Nine heart-shaped pans chosen to work together — from soft daytime wash to a defined evening edge.",
+    features: ["9 blendable heart-shaped pans", "Matte and shimmer finishes", "2 curated editions"],
+    variants: ["Bronzed Nude", "Rosé Mauve"],
+    variantLabel: "Edition", size: "13.5g",
+    images: {
+      "Bronzed Nude": "/assets/products/crossheart-palette-bronzed-nude.png",
+      "Rosé Mauve": "/assets/products/crossheart-palette-rose-mauve.png",
     },
   },
   {
@@ -139,6 +157,10 @@ export const PRODUCTS = [
     features: ["Fine-grain sugar exfoliant", "Melts into an oil finish", "2 scents"],
     variants: ["Japanese Cherry Blossom", "Sweet Vanilla"],
     variantLabel: "Scent", size: "350g",
+    images: {
+      "Japanese Cherry Blossom": "/assets/products/sugar-melt-japanese-cherry-blossom.png",
+      "Sweet Vanilla": "/assets/products/sugar-melt-sweet-vanilla.png",
+    },
   },
   {
     id: "silk-shower-oil", name: "Silk Shower Oil", sub: "Cleansing Shower Oil", cat: "bath",
