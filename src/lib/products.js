@@ -8,9 +8,7 @@ export const CATEGORY_INFO = {
   "lip":            { label: "Lip",            desc: "Colour and care for the lips, from satin finishes to everyday wear.", img: "/assets/cat-lip.png" },
   "eye":            { label: "Eye",            desc: "Definition and dimension for every eye look, from everyday to statement.", img: "/assets/cat-eye.png" },
   "cheek":          { label: "Cheek",          desc: "Soft, buildable colour for a natural, healthy flush.", img: "/assets/cat-cheek.png" },
-  "tools":          { label: "Tools",          desc: "Multi-use pieces designed to complete and simplify any makeup routine.", img: "/assets/cat-tools.png" },
   "body-care":      { label: "Body care",      desc: "Nourishing everyday essentials for softer, healthier skin.", img: "/assets/cat-body-care.jpg" },
-  "face-care":      { label: "Face care",      desc: "Gentle, botanical formulas that cleanse and care for the skin.", img: "/assets/cat-face-care.jpg" },
   "home-fragrance": { label: "Home fragrance", desc: "Reed diffusers crafted to set a calm, inviting atmosphere at home.", img: "/assets/cat-home-fragrance.jpg" },
   "bath":           { label: "Bath",           desc: "Gentle cleansing essentials for a soft, everyday bath routine.", img: "/assets/cat-bath.jpg" },
 };
