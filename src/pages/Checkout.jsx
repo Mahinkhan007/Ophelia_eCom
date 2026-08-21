@@ -103,8 +103,8 @@ export default function Checkout() {
           </div>
 
           <div className="field" style={{ marginTop: 22 }}>
-            <label>Transaction ID</label>
-            <input type="text" placeholder="e.g. CC-8231-9046-1170" value={txnId} onChange={(e) => setTxnId(e.target.value)} />
+            <label>Transaction ID <span style={{ color: 'var(--berry)' }}>*</span></label>
+            <input type="text" required placeholder="e.g. CC-8231-9046-1170" value={txnId} onChange={(e) => setTxnId(e.target.value)} />
             <p style={{ fontSize: 12, color: 'var(--midtext)', marginTop: 6 }}>
               Enter the transaction ID from your banking app's payment confirmation as proof of payment.
             </p>
