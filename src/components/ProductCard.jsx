@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
-import { CATEGORY_INFO } from '../lib/products';
+import { CATEGORY_INFO, getProductImage } from '../lib/products';
 
 function useTilt(maxDeg = 8) {
   const onMouseMove = (e) => {
@@ -25,7 +25,7 @@ export default function ProductCard({ product, subtitle }) {
       {product.badge && <span className="card-badge">{product.badge}</span>}
       <Link to={`/product/${product.id}`}>
         <div className="card-media">
-          <img src="/assets/lipstick.jpg" alt={product.name} className="card-photo" />
+          <img src={getProductImage(product, product.variants[0])} alt={product.name} className="card-photo" />
         </div>
         <div className="card-body">
           <p className="card-cat">{CATEGORY_INFO[product.cat].label}</p>

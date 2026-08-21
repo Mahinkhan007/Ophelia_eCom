@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import Locket3D from '../components/Locket3D';
 import ProductCard from '../components/ProductCard';
 import { useCart } from '../context/CartContext';
-import { CATEGORY_INFO, PRODUCTS, getProduct, getRelated } from '../lib/products';
+import { CATEGORY_INFO, PRODUCTS, getProduct, getProductImage, getRelated } from '../lib/products';
 
 export default function Product() {
   const { id } = useParams();
@@ -37,11 +36,10 @@ export default function Product() {
       <section style={{ paddingTop: 20 }}>
         <div className="pdp-grid">
           <div className="pdp-media">
-            <Locket3D
-              className="pdp-canvas"
-              swatchColor={parseInt(product.swatch.replace('#', '0x'))}
-              ambientParticles={false}
-              interactive
+            <img
+              className="pdp-photo"
+              src={getProductImage(product, selectedVariant)}
+              alt={`${product.name} — ${selectedVariant}`}
             />
             {product.badge && <span className="card-badge pdp-badge">{product.badge}</span>}
           </div>
