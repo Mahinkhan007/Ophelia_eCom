@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
 import { CATEGORY_INFO } from '../lib/products';
 
-const CAT_TILES = Object.entries(CATEGORY_INFO).map(([cat, info]) => ({
-  cat, title: info.label, sub: info.desc, img: '/assets/lipstick.jpg',
+const HOME_CATS = ['lip', 'cheek', 'home-fragrance', 'complexion'];
+const CAT_TILES = HOME_CATS.map((cat) => ({
+  cat, title: CATEGORY_INFO[cat].label, sub: CATEGORY_INFO[cat].desc, img: '/assets/lipstick.jpg',
 }));
 
 export default function Home() {
@@ -52,7 +53,7 @@ export default function Home() {
               </Link>
             ))}
             <Link to="/category?cat=all" className="cat-tile cat-tile-all">
-              <h3>Shop All</h3>
+              <h3>See All &rarr;</h3>
               <p>The full collection</p>
             </Link>
           </div>
