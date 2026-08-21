@@ -10,6 +10,7 @@ import Checkout from './pages/Checkout';
 import Confirmation from './pages/Confirmation';
 import Home from './pages/Home';
 import Product from './pages/Product';
+import Rewards from './pages/Rewards';
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -22,6 +23,7 @@ function AnimatedRoutes() {
         <Route path="/checkout" element={<PageTransition><Checkout /></PageTransition>} />
         <Route path="/confirmation" element={<PageTransition><Confirmation /></PageTransition>} />
         <Route path="/account" element={<PageTransition><Account /></PageTransition>} />
+        <Route path="/rewards" element={<PageTransition><Rewards /></PageTransition>} />
       </Routes>
     </AnimatePresence>
   );

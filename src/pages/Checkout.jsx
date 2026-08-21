@@ -26,8 +26,15 @@ export default function Checkout() {
 
   const setField = (key) => (e) => setForm((f) => ({ ...f, [key]: e.target.value }));
 
+  const hasReward = lines.some((l) => l.isReward);
+  const hasRealItem = lines.some((l) => !l.isReward);
+
   const proceedToPayment = () => {
     if (lines.length === 0) return;
+    if (hasReward && !hasRealItem) {
+      setFormError('A loyalty reward can’t be redeemed on its own — add another product to your cart first.');
+      return;
+    }
     if (!form.name || !form.address) {
       setFormError('Please fill in your name and delivery address before proceeding.');
       return;
@@ -49,7 +56,10 @@ export default function Checkout() {
     const order = {
       orderNumber: 'OPH-' + Math.floor(100000 + Math.random() * 900000),
       date: new Date().toISOString(),
-      lines: lines.map((l) => ({ id: l.id, name: l.product.name, variant: l.variant, qty: l.qty, lineTotal: l.lineTotal })),
+      lines: lines.map((l) => ({
+        id: l.id, name: l.product.name, variant: l.variant, qty: l.qty, lineTotal: l.lineTotal,
+        isReward: l.isReward || false, pointsCost: l.pointsCost,
+      })),
       subtotal,
       total,
       transactionId: trimmed,
@@ -129,16 +139,23 @@ export default function Checkout() {
                   <div className="cart-line" key={`${l.id}-${l.variant}`}>
                     <div className="cart-thumb"><MiniLocket color={l.product.swatch} /></div>
                     <div>
-                      <div className="cart-line-name">{l.product.name}</div>
+                      <div className="cart-line-name">
+                        {l.product.name}
+                        {l.isReward && <span className="reward-tag">Loyalty Reward</span>}
+                      </div>
                       <div className="cart-line-variant">{l.variant}</div>
                       <span className="remove-link" onClick={() => removeFromCart(l.id, l.variant)}>Remove</span>
                     </div>
-                    <div className="cart-qty-mini">
-                      <button className="qty-btn-mini" onClick={() => updateCartLine(l.id, l.variant, l.qty - 1)}>&minus;</button>
-                      <span>{l.qty}</span>
-                      <button className="qty-btn-mini" onClick={() => updateCartLine(l.id, l.variant, l.qty + 1)}>+</button>
-                    </div>
-                    <div className="cart-line-price">ORD {l.lineTotal}</div>
+                    {l.isReward ? (
+                      <div className="cart-qty-mini" style={{ visibility: 'hidden' }}><span>1</span></div>
+                    ) : (
+                      <div className="cart-qty-mini">
+                        <button className="qty-btn-mini" onClick={() => updateCartLine(l.id, l.variant, l.qty - 1)}>&minus;</button>
+                        <span>{l.qty}</span>
+                        <button className="qty-btn-mini" onClick={() => updateCartLine(l.id, l.variant, l.qty + 1)}>+</button>
+                      </div>
+                    )}
+                    <div className="cart-line-price">{l.isReward ? 'Free' : `ORD ${l.lineTotal}`}</div>
                   </div>
                 ))}
               </div>

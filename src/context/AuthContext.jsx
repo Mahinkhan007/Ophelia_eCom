@@ -63,6 +63,8 @@ export function AuthProvider({ children }) {
       qty: l.qty,
       unit_price: l.lineTotal / l.qty,
       line_total: l.lineTotal,
+      is_reward: !!l.isReward,
+      points_cost: l.isReward ? l.pointsCost : null,
     }));
 
     const { error: itemsError } = await sb.from('order_items').insert(items);

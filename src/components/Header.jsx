@@ -13,6 +13,7 @@ const NAV = [
   ...['complexion', 'lip', 'body-care', 'home-fragrance'].map((cat) => ({
     to: `/category?cat=${cat}`, label: CATEGORY_INFO[cat].label, match: matchCat(cat),
   })),
+  { to: '/rewards', label: 'Rewards', match: (loc) => loc.pathname === '/rewards' },
 ];
 
 export default function Header() {

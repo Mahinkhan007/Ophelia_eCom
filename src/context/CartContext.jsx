@@ -1,5 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useState } from 'react';
 import { getProduct, discountedPrice } from '../lib/products';
+import { getReward } from '../lib/loyalty';
 
 const CART_KEY = 'ophelia_cart_v1';
 
@@ -49,17 +50,30 @@ export function CartProvider({ children }) {
 
   const showToast = useCallback((message) => setToast(message), []);
 
+  /* Redeem a loyalty reward — adds it to the cart at 0 ORD, qty fixed at 1.
+     Balance eligibility is checked by the caller (Rewards page) before
+     calling this; the database enforces it independently on checkout. */
+  const redeemReward = useCallback((rewardId) => {
+    const reward = getReward(rewardId);
+    if (!reward) return;
+    setCart(prev => {
+      if (prev.some(l => l.id === rewardId)) return prev;
+      return [...prev, { id: rewardId, variant: reward.name, qty: 1, isReward: true, pointsCost: reward.pointsCost }];
+    });
+  }, []);
+
   const cartLinesWithDetails = () => cart.map(l => {
-    const p = getProduct(l.id);
+    const p = getProduct(l.id) || getReward(l.id);
     if (!p) return null;
-    return { ...l, product: p, unitPrice: discountedPrice(p.price), lineTotal: discountedPrice(p.price) * l.qty };
+    const unitPrice = l.isReward ? 0 : discountedPrice(p.price);
+    return { ...l, product: p, unitPrice, lineTotal: unitPrice * l.qty };
   }).filter(Boolean);
 
   const cartCount = () => cart.reduce((sum, l) => sum + l.qty, 0);
   const cartSubtotal = () => cartLinesWithDetails().reduce((sum, l) => sum + l.lineTotal, 0);
 
   const value = {
-    cart, addToCart, updateCartLine, removeFromCart, clearCart,
+    cart, addToCart, updateCartLine, removeFromCart, clearCart, redeemReward,
     cartCount, cartSubtotal, cartLinesWithDetails,
     toast, showToast,
   };

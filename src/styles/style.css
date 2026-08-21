@@ -175,6 +175,22 @@ p.section-sub { color: var(--midtext); font-size: 15px; line-height: 1.75; margi
 .price-new { font-size: 17px; font-weight: 700; color: var(--berry); }
 .card-cta { margin: 16px 22px 0; }
 
+/* ---------- Loyalty rewards ---------- */
+.loyalty-balance-card {
+  display: flex; align-items: center; gap: 16px;
+  background: linear-gradient(160deg, var(--lightgold), #fff);
+  border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 22px 26px; margin: 24px 0 8px;
+}
+.loyalty-balance-label { margin: 0; font-size: 11.5px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--midtext); font-weight: 700; }
+.loyalty-balance-value { margin: 2px 0 0; font-size: 26px; font-weight: 700; color: var(--darktext); font-family: 'Playfair Display', serif; }
+.loyalty-balance-value span { font-size: 13px; font-weight: 600; color: var(--midtext); font-family: 'Inter'; }
+.reward-tag {
+  display: inline-block; margin-left: 8px; font-size: 9.5px; font-weight: 700; letter-spacing: 0.6px;
+  text-transform: uppercase; color: var(--berry); background: var(--lightgold);
+  padding: 2px 7px; border-radius: 20px; vertical-align: middle;
+}
+
 /* ---------- Locket swatch icon (signature brand motif, non-3D fallback) ---------- */
 .locket-icon { width: 64px; height: 64px; }
 
