@@ -45,6 +45,10 @@ create table if not exists public.orders (
   user_id uuid references auth.users(id) on delete set null,
   order_number text not null unique,
   status text not null default 'paid',
+  -- derived, not app-set: guarantees this always reflects user_id, even if
+  -- a future code path forgets to pass one explicitly. Query/report on this
+  -- directly, e.g. `select checkout_type, count(*) from orders group by 1`.
+  checkout_type text generated always as (case when user_id is null then 'guest' else 'member' end) stored,
   customer_name text not null,
   customer_email text,
   customer_address text,
@@ -59,11 +63,23 @@ create table if not exists public.orders (
 
 alter table public.orders enable row level security;
 
--- guest checkout is allowed: user_id may be null, but if set it must match the caller
-create policy "Anyone can create an order" on public.orders
-  for insert with check (user_id is null or auth.uid() = user_id);
+create index if not exists orders_user_id_idx on public.orders(user_id);
+create index if not exists orders_checkout_type_idx on public.orders(checkout_type);
+create index if not exists orders_created_at_idx on public.orders(created_at desc);
 
-create policy "Users view own orders" on public.orders
+-- GUEST checkout: user_id is null, no auth session required to insert.
+-- MEMBER checkout: user_id must match the authenticated caller — a signed-in
+-- user can never write an order under someone else's id.
+create policy "Guest checkout can create an order" on public.orders
+  for insert with check (user_id is null);
+
+create policy "Members can create their own order" on public.orders
+  for insert with check (auth.uid() = user_id);
+
+-- Guests never get SELECT access (RLS has no session to match — by design,
+-- the guest confirmation page reads the order back from sessionStorage
+-- instead of Supabase). Only a signed-in member can list their own orders.
+create policy "Members view own orders" on public.orders
   for select using (auth.uid() = user_id);
 
 -- ---------- order_items (line items per transaction) ----------
@@ -80,15 +96,27 @@ create table if not exists public.order_items (
 
 alter table public.order_items enable row level security;
 
-create policy "Anyone can add items to an order they just created" on public.order_items
+create index if not exists order_items_order_id_idx on public.order_items(order_id);
+
+-- line items inherit their order's guest/member status: an item can only be
+-- attached to an order the caller was just allowed to create above.
+create policy "Guest checkout can add items to its own order" on public.order_items
   for insert with check (
     exists (
       select 1 from public.orders o
-      where o.id = order_id and (o.user_id is null or o.user_id = auth.uid())
+      where o.id = order_id and o.user_id is null
     )
   );
 
-create policy "Users view own order items" on public.order_items
+create policy "Members can add items to their own order" on public.order_items
+  for insert with check (
+    exists (
+      select 1 from public.orders o
+      where o.id = order_id and o.user_id = auth.uid()
+    )
+  );
+
+create policy "Members view own order items" on public.order_items
   for select using (
     exists (
       select 1 from public.orders o
