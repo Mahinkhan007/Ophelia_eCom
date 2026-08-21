@@ -124,14 +124,6 @@ export const PRODUCTS = [
     variantLabel: "Edition", size: "15g",
   },
   {
-    id: "sweetheart-eyes", name: "Sweetheart Eyes", sub: "Nine-Pan Eyeshadow Palette", cat: "eye",
-    price: 750, swatch: "#8A6A4E", badge: null,
-    desc: "Nine shades chosen to work together — from soft daytime wash to a defined evening edge.",
-    features: ["9 blendable shades", "Matte and shimmer finishes", "2 curated editions"],
-    variants: ["Bronzed Nude", "Rosé Mauve"],
-    variantLabel: "Edition", size: "13.5g",
-  },
-  {
     id: "flower-foam", name: "Flower Foam", sub: "Gentle Foaming Handwash", cat: "bath",
     price: 400, swatch: "#F2C6CE", badge: null,
     desc: "Strawberry — soft on hands, gentle on skin, for every day.",
