@@ -4,7 +4,7 @@
    reused on the homepage hero (large, ambient) and every product
    page (smaller, tinted to that product's own swatch colour).
    ========================================================== */
-import * as THREE from './vendor/three.module.js';
+import * as THREE from 'three';
 
 export function initLocket(canvas, opts = {}) {
   const {
@@ -69,7 +69,8 @@ export function initLocket(canvas, opts = {}) {
   group.add(innerRing);
 
   // small gem accent at base, echoing the campaign key visual
-  const gem = new THREE.Mesh(new THREE.OctahedronGeometry(0.14, 0), new THREE.MeshStandardMaterial({ color: 0x8fa6c9, metalness: 0.3, roughness: 0.15 }));
+  const gemMat = new THREE.MeshStandardMaterial({ color: 0x8fa6c9, metalness: 0.3, roughness: 0.15 });
+  const gem = new THREE.Mesh(new THREE.OctahedronGeometry(0.14, 0), gemMat);
   gem.position.set(0, -1.85, 0.15);
   group.add(gem);
 
@@ -96,30 +97,38 @@ export function initLocket(canvas, opts = {}) {
   let targetRotY = 0, targetRotX = 0.15;
   let dragging = false, lastX = 0;
 
+  const onPointerMove = (e) => {
+    const r = canvas.getBoundingClientRect();
+    const nx = (e.clientX - r.left) / r.width - 0.5;
+    const ny = (e.clientY - r.top) / r.height - 0.5;
+    if (!dragging) {
+      targetRotY = nx * 0.9;
+      targetRotX = 0.15 - ny * 0.4;
+    }
+  };
+  const onPointerDown = (e) => { dragging = true; lastX = e.clientX; };
+  const onPointerUp = () => { dragging = false; };
+  const onWindowPointerMove = (e) => {
+    if (dragging) {
+      const dx = e.clientX - lastX;
+      targetRotY += dx * 0.01;
+      lastX = e.clientX;
+    }
+  };
+
   if (interactive) {
-    canvas.addEventListener('pointermove', (e) => {
-      const r = canvas.getBoundingClientRect();
-      const nx = (e.clientX - r.left) / r.width - 0.5;
-      const ny = (e.clientY - r.top) / r.height - 0.5;
-      if (!dragging) {
-        targetRotY = nx * 0.9;
-        targetRotX = 0.15 - ny * 0.4;
-      }
-    });
-    canvas.addEventListener('pointerdown', (e) => { dragging = true; lastX = e.clientX; });
-    window.addEventListener('pointerup', () => dragging = false);
-    window.addEventListener('pointermove', (e) => {
-      if (dragging) {
-        const dx = e.clientX - lastX;
-        targetRotY += dx * 0.01;
-        lastX = e.clientX;
-      }
-    });
+    canvas.addEventListener('pointermove', onPointerMove);
+    canvas.addEventListener('pointerdown', onPointerDown);
+    window.addEventListener('pointerup', onPointerUp);
+    window.addEventListener('pointermove', onWindowPointerMove);
   }
 
   let t = 0;
+  let frameId = null;
+  let stopped = false;
   function animate() {
-    requestAnimationFrame(animate);
+    if (stopped) return;
+    frameId = requestAnimationFrame(animate);
     t += 0.006;
     group.rotation.y += (targetRotY + Math.sin(t * 0.4) * 0.15 - group.rotation.y) * 0.06;
     group.rotation.x += (targetRotX - group.rotation.x) * 0.06;
@@ -129,5 +138,24 @@ export function initLocket(canvas, opts = {}) {
   }
   animate();
 
-  return { scene, camera, renderer, group };
+  function dispose() {
+    stopped = true;
+    if (frameId) cancelAnimationFrame(frameId);
+    window.removeEventListener('resize', resize);
+    if (interactive) {
+      canvas.removeEventListener('pointermove', onPointerMove);
+      canvas.removeEventListener('pointerdown', onPointerDown);
+      window.removeEventListener('pointerup', onPointerUp);
+      window.removeEventListener('pointermove', onWindowPointerMove);
+    }
+    scene.traverse((obj) => {
+      if (obj.geometry) obj.geometry.dispose();
+      if (obj.material) {
+        (Array.isArray(obj.material) ? obj.material : [obj.material]).forEach(m => m.dispose());
+      }
+    });
+    renderer.dispose();
+  }
+
+  return { scene, camera, renderer, group, dispose };
 }

@@ -3,18 +3,20 @@
    Single source of truth for every page (home, category, product, cart)
    ============================================================ */
 
-const CATEGORY_INFO = {
-  "complexion": { label: "Complexion", desc: "Foundations, powders and finishes — matched to your true undertone, not the nearest guess." },
-  "lip":        { label: "Lip",        desc: "Colour that reads as yours, in a case built to be refilled, not replaced." },
-  "eye":        { label: "Eye",        desc: "Definition and colour with a steady hand — from everyday liner to a full nine-pan palette." },
-  "cheek":      { label: "Cheek & Contour", desc: "Blush, highlight and glow, matched to your undertone rather than a single universal shade." },
-  "body":       { label: "Body Care",  desc: "Thalassa botanicals — rich, quiet luxury for skin and hair, made from Oreiana's own harvests." },
-  "bath":       { label: "Bath & Cleansing", desc: "A cleanse that feels like care, not routine." },
-  "fragrance":  { label: "Home Fragrance", desc: "Reed diffusers carrying the scent of Oreiana home with you." },
+export const CATEGORY_INFO = {
+  "complexion":     { label: "Complexion",     desc: "Base makeup for a flawless, luminous canvas — foundation, powders and highlighters." },
+  "lip":            { label: "Lip",            desc: "Colour and care for the lips, from satin finishes to everyday wear." },
+  "eye":            { label: "Eye",            desc: "Definition and dimension for every eye look, from everyday to statement." },
+  "cheek":          { label: "Cheek",          desc: "Soft, buildable colour for a natural, healthy flush." },
+  "tools":          { label: "Tools",          desc: "Multi-use pieces designed to complete and simplify any makeup routine." },
+  "body-care":      { label: "Body care",      desc: "Nourishing everyday essentials for softer, healthier skin." },
+  "face-care":      { label: "Face care",      desc: "Gentle, botanical formulas that cleanse and care for the skin." },
+  "home-fragrance": { label: "Home fragrance", desc: "Reed diffusers crafted to set a calm, inviting atmosphere at home." },
+  "bath":           { label: "Bath",           desc: "Gentle cleansing essentials for a soft, everyday bath routine." },
 };
 
 /* Each product: id, name, sub, cat, price (pre-discount), variants, desc, features, sizeLabel */
-const PRODUCTS = [
+export const PRODUCTS = [
   {
     id: "rouge-ophelia", name: "Rouge Ophélia", sub: "Satin Lip Colour", cat: "lip",
     price: 650, swatch: "#B5473E", badge: "Bestseller",
@@ -112,7 +114,7 @@ const PRODUCTS = [
     variantLabel: "Scent", size: "300ml",
   },
   {
-    id: "sugar-melt", name: "Sugar Melt", sub: "Exfoliating Body Scrub", cat: "body",
+    id: "sugar-melt", name: "Sugar Melt", sub: "Exfoliating Body Scrub", cat: "body-care",
     price: 620, swatch: "#C9A45C", badge: "New",
     desc: "Polished skin, matched to your favourite scent — a sugar-based scrub that melts as it exfoliates.",
     features: ["Fine-grain sugar exfoliant", "Melts into an oil finish", "2 scents"],
@@ -128,7 +130,7 @@ const PRODUCTS = [
     variantLabel: "Scent", size: "300ml",
   },
   {
-    id: "botanic-shampoo", name: "Botanic Shampoo", sub: "Nourishing Botanical Shampoo", cat: "body",
+    id: "botanic-shampoo", name: "Botanic Shampoo", sub: "Nourishing Botanical Shampoo", cat: "body-care",
     price: 560, swatch: "#A8B89A", badge: null,
     desc: "Nourishment, matched to your hair's needs — two botanical blends for two different hair stories.",
     features: ["Sulfate-gentle formula", "Botanical actives", "2 blends"],
@@ -136,7 +138,7 @@ const PRODUCTS = [
     variantLabel: "Blend", size: "250ml",
   },
   {
-    id: "whipped-butter", name: "Whipped Butter", sub: "Rich Nourishing Body Butter", cat: "body",
+    id: "whipped-butter", name: "Whipped Butter", sub: "Rich Nourishing Body Butter", cat: "body-care",
     price: 650, swatch: "#E6D3A8", badge: null,
     desc: "Rich, quiet luxury for everyday skin — a whipped, fast-absorbing body butter in two signature scents.",
     features: ["Deeply nourishing, fast-absorbing", "Whipped, non-greasy texture", "2 scents"],
@@ -144,7 +146,7 @@ const PRODUCTS = [
     variantLabel: "Scent", size: "200g",
   },
   {
-    id: "joay-lotion", name: "Joay Lotion", sub: "Softening Hand Cream", cat: "body",
+    id: "joay-lotion", name: "Joay Lotion", sub: "Softening Hand Cream", cat: "body-care",
     price: 520, swatch: "#F0E0D0", badge: null,
     desc: "Everyday hydration, precisely done — a fast-absorbing hand cream for repeated daily use.",
     features: ["Fast-absorbing, non-sticky", "Everyday hydration", "Travel-friendly size"],
@@ -152,7 +154,7 @@ const PRODUCTS = [
     variantLabel: "Variant", size: "200ml",
   },
   {
-    id: "lavender-dream", name: "Lavender Dream", sub: "Reed Diffuser", cat: "fragrance",
+    id: "lavender-dream", name: "Lavender Dream", sub: "Reed Diffuser", cat: "home-fragrance",
     price: 700, swatch: "#B7A6D9", badge: null,
     desc: "Lavender, chamomile, white musk — a calming signature scent for the home.",
     features: ["6-8 week diffusion life", "Lavender · chamomile · white musk", "Reed-diffused, flame-free"],
@@ -160,7 +162,7 @@ const PRODUCTS = [
     variantLabel: "Scent", size: "100ml",
   },
   {
-    id: "rose-petal", name: "Rose Petal", sub: "Reed Diffuser", cat: "fragrance",
+    id: "rose-petal", name: "Rose Petal", sub: "Reed Diffuser", cat: "home-fragrance",
     price: 750, swatch: "#D98A9A", badge: "Bestseller",
     desc: "Rose, peony, soft musk — a nod to Oreiana's own national flower, brought home.",
     features: ["6-8 week diffusion life", "Rose · peony · soft musk", "Reed-diffused, flame-free"],
@@ -168,7 +170,7 @@ const PRODUCTS = [
     variantLabel: "Scent", size: "100ml",
   },
   {
-    id: "golden-amber", name: "Golden Amber", sub: "Reed Diffuser", cat: "fragrance",
+    id: "golden-amber", name: "Golden Amber", sub: "Reed Diffuser", cat: "home-fragrance",
     price: 720, swatch: "#C9963C", badge: null,
     desc: "Amber, vanilla, sandalwood — warm and grounding, for evenings in.",
     features: ["6-8 week diffusion life", "Amber · vanilla · sandalwood", "Reed-diffused, flame-free"],
@@ -176,7 +178,7 @@ const PRODUCTS = [
     variantLabel: "Scent", size: "100ml",
   },
   {
-    id: "amber-musk", name: "Amber Musk", sub: "Reed Diffuser", cat: "fragrance",
+    id: "amber-musk", name: "Amber Musk", sub: "Reed Diffuser", cat: "home-fragrance",
     price: 690, swatch: "#9C7A3C", badge: null,
     desc: "Amber, citrus, musk — a brighter, more everyday signature scent.",
     features: ["6-8 week diffusion life", "Amber · citrus · musk", "Reed-diffused, flame-free"],
@@ -186,20 +188,20 @@ const PRODUCTS = [
 ];
 
 /* ---- derived helpers, used across every page ---- */
-function discountedPrice(price) {
+export function discountedPrice(price) {
   return price;
 }
 
-function getProduct(id) {
+export function getProduct(id) {
   return PRODUCTS.find(p => p.id === id);
 }
 
-function getProductsByCategory(cat) {
+export function getProductsByCategory(cat) {
   if (!cat || cat === "all") return PRODUCTS;
   return PRODUCTS.filter(p => p.cat === cat);
 }
 
-function getRelated(product, count = 4) {
+export function getRelated(product, count = 4) {
   const sameCat = PRODUCTS.filter(p => p.cat === product.cat && p.id !== product.id);
   if (sameCat.length >= count) return sameCat.slice(0, count);
   // fall back to sitewide bestsellers/new arrivals so "Complete the Look" is never empty
